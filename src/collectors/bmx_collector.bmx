@@ -238,7 +238,7 @@ Type BmxCollector Extends BaseCollector
 		Self.getAllFilesInDirectory(directoryFiles, directory)
 		
 		' Filter the list to only include BlitzMax files
-		Return tlist_filter(directoryFiles, is_blitzmax_file)
+		Return tlist_filter(directoryFiles, isBlitzMaxFile)
 		
 	End Method
 	
