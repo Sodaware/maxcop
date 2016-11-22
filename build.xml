@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<project name="maxcop" default="make">
+
+  <!-- Load properties -->
+  <property file="${project::get-buildfile-path()}/global.properties" />
+
+  <target name="make" description="Build the app in debug mode">
+    <bmk action="makeapp" threaded="true" gui="false"
+         output="${project::get-buildfile-path()}/build/${app.name}"
+         source="${project::get-buildfile-path()}/src/main.bmx" />
+  </target>
+
+  <target name="make:release" description="Build the app in release mode">
+    <bmk action="makeapp" threaded="true" gui="false" debug="false"
+         output="${project::get-buildfile-path()}/build/${app.name}"
+         source="${project::get-buildfile-path()}/src/main.bmx" />
+  </target>
+
+</project>
