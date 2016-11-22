@@ -42,9 +42,9 @@ Type ConsoleOptions Extends CommandLineOptions
 		LongName="silent" ..
 		ShortName="s" }
 	
-	Field Verbose:Int = False { ..
-		Description="Show lots of extra detail" ..
-		LongName="verbose" ..
+	Field showVersionInfo:Byte = False { ..
+		Description="Displays the current version and exits." ..
+		LongName="version" ..
 		ShortName="v" }
 	
 	Field Help:Int		= False

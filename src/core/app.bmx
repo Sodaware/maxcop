@@ -55,6 +55,13 @@ Type App
 			Self._shutdown()
 		End If
 		
+		' -- Show version if requested and quit
+		If Self._options.showVersionInfo Then
+			Print AssemblyInfo.NAME + " " + AssemblyInfo.VERSION + " (Released: " + AssemblyInfo.RELEASE_DATE + ")"
+			Print "(C)opyright " + AssemblyInfo.COPYRIGHT
+			Return Self._shutdown()
+		End If
+		
 		' -- Add standard services to ServiceManager
 		Self._services.addService(New ConfigurationService)
 		Self._services.addService(New ReporterService)
