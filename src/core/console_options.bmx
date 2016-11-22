@@ -47,6 +47,11 @@ Type ConsoleOptions Extends CommandLineOptions
 		LongName="version" ..
 		ShortName="v" }
 	
+	Field showVerboseVersionInfo:Byte = False { ..
+		Description="Displays more detailed version info and exits." ..
+		LongName="verbose-version" ..
+		ShortName="V" }
+
 	Field Help:Int		= False
 	
 	

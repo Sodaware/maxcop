@@ -57,6 +57,11 @@ Type App
 		
 		' -- Show version if requested and quit
 		If Self._options.showVersionInfo Then
+			Print AssemblyInfo.VERSION
+			Return Self._shutdown()
+		End If
+
+		If Self._options.showVerboseVersionInfo Then
 			Print AssemblyInfo.NAME + " " + AssemblyInfo.VERSION + " (Released: " + AssemblyInfo.RELEASE_DATE + ")"
 			Print "(C)opyright " + AssemblyInfo.COPYRIGHT
 			Return Self._shutdown()
