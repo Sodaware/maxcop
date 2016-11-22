@@ -108,6 +108,14 @@ Type App
 			Throw FormatterNotFoundException.Create(Self._options.Format)
 		End If
 		
+		' Validate the configuration file
+		Try
+			config.validateConfiguration()
+		Catch e:ApplicationConfigurationException
+			Printc "%rConfiguration Error: %n" + e.tostring()
+			Self._shutdown()
+		End Try
+		
 		' Create a new runner
 		Local run:Runner = New Runner
 		

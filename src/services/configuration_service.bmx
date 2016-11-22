@@ -15,6 +15,7 @@ Import sodaware.file_config_iniserializer
 Import sodaware.file_config_sodaserializer
 
 Import "service.bmx"
+Import "../core/exceptions.bmx"
 
 ''' <summary>
 ''' Manages the application configuration. This is the global
@@ -63,6 +64,28 @@ Type ConfigurationService Extends Service
 			IniConfigSerializer.Load(Self._config, Self.configurationFilePath("maxcop.ini"))
 		EndIf
 		
+	End Method
+	
+	
+	' ------------------------------------------------------------
+	' -- Validating the configuration
+	' ------------------------------------------------------------
+	
+	Method validateConfiguration()
+		
+		' Check a module path is set
+		If Self._config.getSectionKeys("mod_path") = Null Or Self._config.getSectionKeys("mod_path").Count() = 0 Then
+			Throw ApplicationConfigurationException.Create("Configuration is missing `mod_path` configuration section")
+		End If
+	
+		' Check module paths
+		If FILETYPE_DIR <> FileType(Self.get("mod_path", Self.getPlatform())) Then
+			Throw ApplicationConfigurationException.Create( ..
+				"Invalid module path ~q" + Self.get("mod_path", Self.getPlatform()) + "~q", .. 
+				"mod_path", Self.getPlatform() ..
+			)
+		End If
+	
 	End Method
 	
 	
