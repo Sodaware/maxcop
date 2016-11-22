@@ -2,3 +2,6 @@
 /src/**/.bmx/
 /src/**/**/.bmx/
 
+/build/maxcop
+/build/maxcop.exe
+/build/maxcop.ini
