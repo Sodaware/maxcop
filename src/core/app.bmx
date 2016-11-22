@@ -127,7 +127,7 @@ Type App
 		
 		' Collect all of the source files
 		Local collector:BmxCollector = New BmxCollector
-		collector.setModPath(Config.get("mod_path", Self.getPlatform()))
+		collector.setModPath(config.get("mod_path", config.getPlatform()))
 		Self._addFilesToCollector(collector)
 		
 		' Set source files
@@ -220,17 +220,6 @@ Type App
 			collector.addPath(LaunchDir)
 			collector.setRoot(LaunchDir)
 		EndIf
-	End Method
-	
-	Method getPlatform:String()
-		?Win32
-		Return "win32"
-		?Linux
-		Return "linux"
-		?MacOs
-		Return "macos"
-		?
-		Return "unknown"
 	End Method
 	
 	

@@ -77,5 +77,21 @@ Type ConfigurationService Extends Service
 	Method configurationFilePath:String(name:String)
 		Return File_Util.PathCombine(AppDir, name)
 	End Method
+
+	
+	' ------------------------------------------------------------
+	' -- Platform Helpers
+	' ------------------------------------------------------------	
+	
+	Method getPlatform:String()
+		?Win32
+		Return "win32"
+		?Linux
+		Return "linux"
+		?MacOs
+		Return "macos"
+		?
+		Return "unknown"
+	End Method
 	
 End Type
