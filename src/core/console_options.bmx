@@ -51,6 +51,11 @@ Type ConsoleOptions Extends CommandLineOptions
 		Description="Displays more detailed version info and exits." ..
 		LongName="verbose-version" ..
 		ShortName="V" }
+		
+	Field configFile:String = "" { ..
+		Description="Path of configuration file to use" ..
+		LongName="config" ..
+		shortname="c" }
 
 	Field Help:Int		= False
 	

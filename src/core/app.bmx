@@ -68,10 +68,7 @@ Type App
 		End If
 		
 		' -- Add standard services to ServiceManager
-		Self._services.addService(New ConfigurationService)
-		Self._services.addService(New ReporterService)
-		Self._services.addService(New RuleService)
-		Self._services.addService(New RuleConfigurationService)
+		Self.registerServices()
 		
 		' -- Initialise the services
 		Self._services.initaliseServices()
@@ -196,6 +193,27 @@ Type App
 	Method _shutdown()
 		Self._services.StopServices()
 		End
+	End Method
+	
+	
+	' ------------------------------------------------------------
+	' -- Service Setup
+	' ------------------------------------------------------------
+	
+	Method registerServices()
+	
+		' Add basic services that don't need configurating
+		Self._services.addService(New ReporterService)
+		Self._services.addService(New RuleService)
+		
+		' Setup and dd the rules configuration service
+		Self._services.addService(New RuleConfigurationService)
+		
+		' Setup and add the configuration service
+		Local configService:ConfigurationService = New ConfigurationService
+		configService.setConfigurationFilePath(Self._options.configFile)
+		Self._services.addService(configService)
+		
 	End Method
 	
 	

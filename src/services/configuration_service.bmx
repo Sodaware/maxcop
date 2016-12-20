@@ -3,6 +3,10 @@
 ' --
 ' -- Manages the application configuration. This is the global
 ' -- configuration that affects all parts of the application.
+' -- For example, paths to BlitzMax modules are set here.
+' --
+' -- Managing the configuration that enables and disables 
+' -- rules is performed by the RuleConfigurationService.
 ' ------------------------------------------------------------
 
 
@@ -24,6 +28,7 @@ Import "../core/exceptions.bmx"
 Type ConfigurationService Extends Service
 
 	Field _config:Config			'''< Internal configuration object
+	Field _configurationFile:String '''< Full path of configuration file (if set manually)
 	
 	
 	' ------------------------------------------------------------
@@ -33,6 +38,11 @@ Type ConfigurationService Extends Service
 	''' <summary>Get a value from the application configuration.</summary>
 	Method get:String(sectionName:String, keyName:String)
 		Return Self._config.getKey(sectionName, keyName)
+	End Method
+	
+	Method setConfigurationFilePath:ConfigurationService(path:String)
+		Self._configurationFile = path
+		Return Self
 	End Method
 	
 	
@@ -56,14 +66,33 @@ Type ConfigurationService Extends Service
 	' ------------------------------------------------------------
 	
 	Method loadConfiguration()
+		
+		' If configuration file was set manually, load it and ignore local config
+		If Self._configurationFile Then	
+			If FILETYPE_FILE = FileType(Self._configurationFile) Then
+				Self.loadConfigurationFile(Self._configurationFile)
+				Return
+			Else
+				Throw CommandLineArgumentsException.Create("Configuration file ~q" + Self._configurationFile + "~q not found")
+			EndIf
+		End If
 	
 		' Check for various configuration files and attempt to load them.
 		If Self.configurationFileExists("maxcop.soda") Then
-			SodaConfigSerializer.Load(Self._config, Self.configurationFilePath("maxcop.soda"))
+			Self.loadConfigurationFile(Self.configurationFilePath("maxcop.soda"))
 		ElseIf Self.configurationFileExists("maxcop.ini") Then
-			IniConfigSerializer.Load(Self._config, Self.configurationFilePath("maxcop.ini"))
+			Self.loadConfigurationFile(Self.configurationFilePath("maxcop.ini"))
 		EndIf
 		
+	End Method
+	
+	Method loadConfigurationFile(fileName:String)
+		Select ExtractExt(fileName.ToLower())
+			Case "soda"
+				SodaConfigSerializer.Load(Self._config, fileName)
+			Case "ini"
+				IniConfigSerializer.Load(Self._config, fileName)
+		End Select
 	End Method
 	
 	

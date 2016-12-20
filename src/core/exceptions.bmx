@@ -46,3 +46,28 @@ Type ApplicationConfigurationException Extends MaxCopException
 		Return message
 	End Method
 End Type
+
+''' <summary>
+''' Exception thrown when a command line argument is invalid.
+''' </summary>
+Type CommandLineArgumentsException Extends MaxCopException
+	Field _option:String
+	Field _optionValue:String
+	
+	Function Create:CommandLineArgumentsException(message:String, option:String = "", optionValue:String = "")
+		Local e:CommandLineArgumentsException = New CommandLineArgumentsException
+		e._option = option
+		e._optionValue = optionValue
+		e.error = message
+		Return e
+	End Function
+	
+	Method ToString:String()
+		Local message:String = "Invalid command line option: "
+		If Self._option And Self._optionValue
+			message:+ Self._option + "=" + Self._optionValue+ " : "
+		EndIf
+		message :+ Self.error
+		Return message
+	End Method
+End Type
