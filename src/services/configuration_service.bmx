@@ -27,8 +27,8 @@ Import "service.bmx"
 Import "../core/exceptions.bmx"
 
 ''' <summary>
-''' Manages the application configuration. This is the global
-''' configuration that affects all parts of the application.
+''' Manages the application configuration. This is the global configuration
+''' that affects all parts of the application.
 ''' </summary>
 Type ConfigurationService Extends Service
 
