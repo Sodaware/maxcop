@@ -38,19 +38,25 @@ Type BmxParser
 	' ----------------------------------------------------------------------
 	' -- Configuring the Parser
 	' ----------------------------------------------------------------------
-	
-	Method setReporter(reporter:BaseReporter)
+
+	''' <summary>Set the reporter to use with this parser.</summary>
+	Method setReporter:BmxParser(reporter:BaseReporter)
 		Self._reporter = reporter
-	End Method
-	
-	Method addRule(rule:BaseRule)
-		Self._enabledRules.addLast(rule)
+		Return Self
 	End Method
 
-	Method addRules(rules:TList)
+	''' <summary>Add a rule this parser must use.</summary>
+	Method addRule:BmxParser(rule:BaseRule)
+		Self._enabledRules.addLast(rule)
+		Return Self
+	End Method
+
+	''' <summary>Add a collection of rules to the parser.</summary>
+	Method addRules:BmxParser(rules:TList)
 		For Local rule:BaseRule = EachIn rules
 			Self.addRule(rule)
 		Next
+		Return Self
 	End Method
 
 
@@ -91,9 +97,6 @@ Type BmxParser
 			rule._reporter = Self._reporter
 			rule.checkFile(file)
 		Next
-		
-		'Local x:StringExceptionsRule = New StringExceptionsRule
-		
 		
 		' Read all tokens
 		While pos < lexer.NumTokens()
