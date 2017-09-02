@@ -30,7 +30,8 @@ Import "../rules/style/uppercase_constants_rule.bmx"
 ' Metrics
 Import "../rules/metrics/line_length_rule.bmx"
 Import "../rules/metrics/trailing_whitespace_rule.bmx"
-Import "../rules/metrics/type_methods_count_rule.bmx"
+Import "../rules/metrics/type_function_count_rule.bmx"
+Import "../rules/metrics/type_method_count_rule.bmx"
 
 
 Type RuleService Extends Service
