@@ -12,59 +12,21 @@
 
 SuperStrict
 
-Import "../base_rule.bmx"
+Import "type_member_count_rule.bmx"
 
-Type Metrics_TypeMethodsCountRule Extends BaseRule
+Type Metrics_TypeMethodsCountRule Extends Metrics_TypeMemberCountRule
 
 	' ------------------------------------------------------------
 	' -- Configuration
 	' ------------------------------------------------------------
 
-	Field maxMethodsCount:Int = 15
-
-
-	' ------------------------------------------------------------
-	' -- Main Rule Execution
-	' ------------------------------------------------------------
-
-	Method checkToken(token:TToken, lexer:TLexer, position:Int, source:SourceFile)
-
-		' Only for "Type" keywords
-		If token.kind <> TToken.TOK_TYPE_KW Then Return
-
-		' Get the type name.
-		Local typeName:String = lexer.GetToken(position + 1).ToString()
-
-		' Count all methods in the type.
-		Local currentMethodCount:Int = 0
-		For Local i:Int = position To lexer.NumTokens() - 1
-			Local currentToken:TToken = lexer.GetToken(i)
-
-			' Finish parsing if the end of the type is reached.
-			If currentToken.kind = TToken.TOK_ENDTYPE_KW Then Exit
-
-			' Count methods
-			If currentToken.kind = TToken.TOK_METHOD_KW Then
-				currentMethodCount :+ 1
-			End If
-		Next
-
-		If currentMethodCount > Self.maxMethodsCount Then
-			Local o:Offense = Offense.Create(source, Self._buildMessageForLine(typeName, currentMethodCount))
-			o.setLocationFromToken(token)
-			o.setExcerpt(source.getLine(token.line - 1))
-			Self.addFileOffense(source, o)
-		End If
-
-	End Method
-
-
-	' ------------------------------------------------------------
-	' -- Internal Helpers
-	' ------------------------------------------------------------
-
-	Method _buildMessageForLine:String(typeName:String, methodCount:Int)
-		Return "Type " + typeName + " has too many methods. [" + methodCount + "/" + Self.maxMethodsCount + "]"
+	' Add a type field so it can be configured via INI
+	Field maxMethodCount:Int = 15
+	
+	Method configure()
+		Self.maxMemberCount = Self.maxMethodCount
+		Self.memberType     = TToken.TOK_METHOD_KW
+		Self.memberTypeName = "method"
 	End Method
 
 End Type

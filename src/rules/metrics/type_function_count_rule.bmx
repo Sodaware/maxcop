@@ -12,59 +12,21 @@
 
 SuperStrict
 
-Import "../base_rule.bmx"
+Import "type_member_count_rule.bmx"
 
-Type Metrics_TypeFunctionCountRule Extends BaseRule
+Type Metrics_TypeFunctionCountRule Extends Metrics_TypeMemberCountRule
 
 	' ------------------------------------------------------------
 	' -- Configuration
 	' ------------------------------------------------------------
 
-	Field maxFunctionsCount:Int = 15
-
-
-	' ------------------------------------------------------------
-	' -- Main Rule Execution
-	' ------------------------------------------------------------
-
-	Method checkToken(token:TToken, lexer:TLexer, position:Int, source:SourceFile)
-
-		' Only for "Type" keywords
-		If token.kind <> TToken.TOK_TYPE_KW Then Return
-
-		' Get the type name.
-		Local typeName:String = lexer.GetToken(position + 1).ToString()
-
-		' Count all functions in the type.
-		Local currentFunctionCount:Int = 0
-		For Local i:Int = position To lexer.NumTokens() - 1
-			Local currentToken:TToken = lexer.GetToken(i)
-
-			' Finish parsing if the end of the type is reached.
-			If currentToken.kind = TToken.TOK_ENDTYPE_KW Then Exit
-
-			' Count methods
-			If currentToken.kind = TToken.TOK_FUNCTION_KW Then
-				currentFunctionCount :+ 1
-			End If
-		Next
-
-		If currentFunctionCount > Self.maxFunctionsCount Then
-			Local o:Offense = Offense.Create(source, Self._buildMessageForLine(typeName, currentFunctionCount))
-			o.setLocationFromToken(token)
-			o.setExcerpt(source.getLine(token.line - 1))
-			Self.addFileOffense(source, o)
-		End If
-
-	End Method
-
-
-	' ------------------------------------------------------------
-	' -- Internal Helpers
-	' ------------------------------------------------------------
-
-	Method _buildMessageForLine:String(typeName:String, functionCount:Int)
-		Return "Type " + typeName + " has too many functions. [" + functionCount + "/" + Self.maxFunctionsCount + "]"
+	' Add a type field so it can be configured via INI
+	Field maxFunctionCount:Int = 15
+	
+	Method configure()
+		Self.maxMemberCount = Self.maxFunctionCount
+		Self.memberType     = TToken.TOK_FUNCTION_KW
+		Self.memberTypeName = "function"
 	End Method
 
 End Type
