@@ -46,8 +46,14 @@ Type BmxParser
 	Method addRule(rule:BaseRule)
 		Self._enabledRules.addLast(rule)
 	End Method
-	
-	
+
+	Method addRules(rules:TList)
+		For Local rule:BaseRule = EachIn rules
+			Self.addRule(rule)
+		Next
+	End Method
+
+
 	' ----------------------------------------------------------------------
 	' -- Parsing Files
 	' ----------------------------------------------------------------------

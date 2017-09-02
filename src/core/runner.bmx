@@ -22,56 +22,59 @@ Type Runner
 	Field _reporter:BaseReporter
 	Field _sources:TList
 	Field _enabledRules:TList
-		
-	Method setReporter(reporter:BaseReporter)
+
+
+	' ------------------------------------------------------------
+	' -- Configuration
+	' ------------------------------------------------------------
+
+	''' <summary>Set the reporter to use.</summary>
+	Method setReporter:Runner(reporter:BaseReporter)
 		Self._reporter = reporter
+		Return Self
 	End Method
-	
-	Method setSources(sources:TList)
+
+	''' <summary>Set the source files to scan.</summary>
+	Method setSources:Runner(sources:TList)
 		Self._sources = sources
+		Return Self
 	End Method
-	
-	Method setEnabledRules(rules:TList)
+
+	''' <summary>Set the list of rules to use.</summary>
+	Method setEnabledRules:Runner(rules:TList)
 		Self._enabledRules = rules
+		Return Self
 	End Method
-	
-	Method execute:Byte()
-		
+
+
+	' ------------------------------------------------------------
+	' -- Main Execution
+	' ------------------------------------------------------------
+
+	Method execute()
+
+		' Create the parser, add rules and setup reporting.
+		Local parser:BmxParser = New BmxParser
+		parser.addRules(Self._enabledRules)
+		parser.setReporter(Self._reporter)
+
 		' Start the scan
 		Self._reporter.beforeScan(Self._sources)
-		
+
 		' Scan each file
 		For Local file:String = EachIn Self._sources
 
 			Self._reporter.beforeFileScan(file)
 
-					
-			' Create a parser for this file
-			' TODO: This will change to Scanner I thnk...
-			' TODO: This can be created outside of the loop
-			Local parser:BmxParser = New BmxParser
-			
-			' Add rules
-			For Local rule:BaseRule = EachIn Self._enabledRules
-				parser.addRule(rule)
-			Next
-			
-			
-			' Parse the file into tokens
-			' Set the reporter for this parser
-			parser.setReporter(Self._reporter)
-			'Local parsedFile:SourceFile = parser.parse(file)
-			
-			' Run each rule
 			parser.parse(file)
-			
+
 			Self._reporter.afterFileScan(file)
-			
-			
+
 		Next
-		
+
+		' Finish the scan.		
 		Self._reporter.afterScan()
-		
+
 	End Method
-	
+
 End Type
