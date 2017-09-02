@@ -53,17 +53,33 @@ Type RuleService Extends Service
 	' ------------------------------------------------------------
 
 	Method initialiseService()
-		
+
 		' Load all Rule types
 		Local baseType:TTypeId = TTypeId.ForName("BaseRule")
+
 		For Local ruleType:TTypeId = EachIn baseType.DerivedTypes()
 			Self._availableRules.AddLast(ruleType.NewObject())
 		Next
-		
+
 	End Method
 	
 	Method unloadService()
 		
+	End Method
+	
+	Method _loadRulesForType(typeInfo:TTypeId)
+		
+		For Local ruleType:TTypeId = EachIn typeInfo.DerivedTypes()
+
+			' If type should be ignored (i.e. has meta "ignore_type") don't add it.
+			If False = ruleType.MetaData().Contains("ignore_type") Then
+				Self._availableRules.AddLast(ruleType.NewObject())
+			EndIf
+
+			' Add any types that extend this type
+			Self._loadRulesForType(typeInfo)
+		Next
+
 	End Method
 	
 	
