@@ -23,13 +23,13 @@ Type ConsoleOptions Extends CommandLineOptions
 	' ------------------------------------------------------------
 
 	Field NoLogo:Int = False { ..
-		Description="Hides the copyright notice and header information" .. 
-		LongName="nologo" .. 
+		Description="Hides the copyright notice and header information" ..
+		LongName="nologo" ..
 		ShortName="n" }
 	
 	Field InputFile:String = "" { ..
-		Description="The input file or module to parse" .. 
-		LongName="input" .. 
+		Description="The input file or module to parse" ..
+		LongName="input" ..
 		ShortName="i"  }
 	
 	Field Format:String = "simple" { ..
@@ -70,10 +70,10 @@ Type ConsoleOptions Extends CommandLineOptions
 	' ------------------------------------------------------------
 	
 	''' <summary>Show the help for this application.</summary>
-	Method showHelp() 
+	Method showHelp()
 		
 		PrintC "Usage%n: maxcop [options] [--input input] [--output output]"
-		PrintC "" 
+		PrintC ""
 		PrintC "Checks source code for style guidelines."
 		PrintC ""
 		

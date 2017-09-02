@@ -128,7 +128,7 @@ Type App
 		run.setReporter(reporters.getReporter(Self._options.Format))
 		
 		' Show the header
-		If Not( Self._options.NoLogo Or run._reporter.hidesBanner() ) Then 
+		If Not( Self._options.NoLogo Or run._reporter.hidesBanner() ) Then
 			Self.writeHeader()
 		EndIf
 		

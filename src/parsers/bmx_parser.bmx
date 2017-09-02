@@ -52,7 +52,7 @@ Type BmxParser
 	' -- Parsing Files
 	' ----------------------------------------------------------------------
 	
-	''' <summary>	
+	''' <summary>
 	''' Parses a single file and returns the parsed source file. Can add
 	''' includes and imports if configured to do so.
 	''' </summary>

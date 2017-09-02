@@ -74,12 +74,12 @@ Type BaseReporter Abstract
 	' ----------------------------------------------------------------------
 	
 	''' <summary>
-	''' Add an offense to a source file. Call this when an offense has been 
+	''' Add an offense to a source file. Call this when an offense has been
 	''' found and needs to be tracked.
 	''' </summary>
 	Method addFileOffense(source:SourceFile, o:Offense)
 		
-		' Add the offense 
+		' Add the offense
 		Self._reportedOffenses.AddLast(o)
 		
 		' Add to list of file offenses

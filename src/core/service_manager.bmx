@@ -79,7 +79,7 @@ Type ServiceManager
 		Self._services.Reverse()
 		For Local tService:Service = EachIn Self._services
 			tService.unloadService()
-		Next	
+		Next
 	End Method
 	
 End Type

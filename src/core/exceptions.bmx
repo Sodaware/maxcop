@@ -14,7 +14,7 @@ SuperStrict
 
 Type MaxCopException
 	Field error:String
-	Method ToString:String()
+	Method toString:String()
 		Return error
 	End Method
 End Type
@@ -42,7 +42,7 @@ Type ApplicationConfigurationException Extends MaxCopException
 		Return e
 	End Function
 	
-	Method ToString:String()
+	Method toString:String()
 		Local message:String = ""
 		If Self._section And Self._key Then
 			message = Self._section + ":" + Self._key + " - "
@@ -67,7 +67,7 @@ Type CommandLineArgumentsException Extends MaxCopException
 		Return e
 	End Function
 	
-	Method ToString:String()
+	Method toString:String()
 		Local message:String = "Invalid command line option: "
 		If Self._option And Self._optionValue
 			message:+ Self._option + "=" + Self._optionValue+ " : "

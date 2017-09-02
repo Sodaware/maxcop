@@ -119,8 +119,8 @@ Type BmxCollector Extends BaseCollector
 	End Method
 	
 	''' <summary>
-	''' Get all source files used by a module. Parses each source file to find "include" and 
-	''' "import" statements and attempts to build a source tree. Can be a little slow, so use 
+	''' Get all source files used by a module. Parses each source file to find "include" and
+	''' "import" statements and attempts to build a source tree. Can be a little slow, so use
 	''' the getModuleSourcesFast if performance is an issue.
 	''' <summary>
 	Method getModuleSources:TList(moduleName:String)
@@ -160,7 +160,7 @@ Type BmxCollector Extends BaseCollector
 			' Create a type
 			Select currentToken.kind
 				
-				Case TToken.TOK_INCLUDE_KW, TToken.TOK_IMPORT_KW 
+				Case TToken.TOK_INCLUDE_KW, TToken.TOK_IMPORT_KW
 					Local filenameToken:ttoken = lexer.GetToken(pos + 1)
 					If filenameToken.kind = TToken.TOK_STRING_LIT Then
 						
@@ -264,7 +264,7 @@ Type BmxCollector Extends BaseCollector
 					Self.getAllFilesInDirectory(fileList, fullPath)
 				Else
 					fileList.AddLast(fullPath)
-				End If	
+				End If
 			End If
 		
 		Until (fileName = Null)
