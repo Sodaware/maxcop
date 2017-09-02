@@ -1,8 +1,13 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- rules/style/string_exceptions_rule.bmx
 ' --
 ' -- Check "Throw" does not throw strings.
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

@@ -1,15 +1,19 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- services/rule_configuration_service.bmx
 ' --
-' -- Manages which rules are enabled and disabled. These
-' -- settings may come from the command line, but can also be
-' -- loaded from a configuration file in the project's
-' -- directory.
+' -- Manages which rules are enabled and disabled. These settings may come from
+' -- the command line, but can also be loaded from a configuration file in the
+' -- project's directory.
 ' --
 ' -- Scans for the following files:
 ' --  - .maxcop_rules.ini
 ' --  - maxcop_rules.ini
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 ' TODO: Allow configuration files to "inherit" from a parent file

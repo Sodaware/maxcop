@@ -1,8 +1,13 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- collectors/bmx_collector.bmx
 ' --
 ' -- Finds BlitzMax source files.
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

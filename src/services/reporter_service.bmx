@@ -1,8 +1,13 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- services/reporter_service.bmx
 ' --
 ' -- Service for working with output Reporters.
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

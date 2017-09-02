@@ -1,9 +1,14 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- rules/metrics/trailing_whitespace_rule.bmx
 ' --
 ' -- Rule to check there is no trailing whitespace at the
 ' -- end of a line. Ignores empty lines.
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

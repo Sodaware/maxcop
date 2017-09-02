@@ -1,8 +1,14 @@
-' ------------------------------------------------------------
-' -- services/service_manager.bmx
+' ------------------------------------------------------------------------------
+' -- src/core/service_manager.bmx
 ' --
-' -- Used to manage application services. 
-' ------------------------------------------------------------
+' -- Manages application services. Keeps track of all services and can start
+' -- and stop them.
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

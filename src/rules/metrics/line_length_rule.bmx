@@ -1,8 +1,13 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- rules/style/line_length_rule.bmx
 ' --
 ' -- Check line length is under a specific limit.
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

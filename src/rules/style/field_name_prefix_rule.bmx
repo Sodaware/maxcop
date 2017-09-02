@@ -1,9 +1,13 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- rules/style/field_name_prefix_rule.bmx
 ' --
-' -- Check pseudo-private field names are prefixed with an
-' -- underscore, not `m_`.
-' ------------------------------------------------------------
+' -- Check pseudo-private field names are prefixed with an underscore, `m_`.
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

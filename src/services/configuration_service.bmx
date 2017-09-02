@@ -1,13 +1,18 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- services/configuration_service.bmx
 ' --
-' -- Manages the application configuration. This is the global
-' -- configuration that affects all parts of the application.
-' -- For example, paths to BlitzMax modules are set here.
+' -- Manages the application configuration. This is the global configuration
+' -- that affects all parts of the application. For example, paths to BlitzMax
+' -- modules are set here.
 ' --
-' -- Managing the configuration that enables and disables
-' -- rules is performed by the RuleConfigurationService.
-' ------------------------------------------------------------
+' -- Managing the configuration that enables and disables rules is performed by
+' -- the RuleConfigurationService.
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

@@ -1,10 +1,14 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- parsers/bmx_parser.bmx
 ' --
-' -- Basic parser for scanning BlitzMax source files. Reads
-' -- the source code and extracts types, functions, methods,
-' -- globals and other constructs.
-' ------------------------------------------------------------
+' -- Basic parser for scanning BlitzMax source files. Reads the source code and
+' -- extracts types, functions, methods, globals and other constructs.
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

@@ -1,8 +1,14 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- core/app.bmx
 ' --
 ' -- Main application logic. Handles pretty much everything.
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
+
 
 SuperStrict
 

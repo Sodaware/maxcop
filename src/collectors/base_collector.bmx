@@ -1,9 +1,14 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- collectors/base_collector.bmx
 ' --
 ' -- Collectors are used to find source files for loading at
 ' -- a later time.
-' ------------------------------------------------------------
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict

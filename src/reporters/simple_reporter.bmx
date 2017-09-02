@@ -1,9 +1,14 @@
-' ------------------------------------------------------------
+' ------------------------------------------------------------------------------
 ' -- reporters/simple_reporter.bmx
 ' --
-' -- Very simple reporter. Outputs warnings to the console
-' -- with some location and colours.
-' ------------------------------------------------------------
+' -- Very simple reporter. Outputs warnings to the console with some location
+' -- and colours.
+' --
+' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
+' -- Copyright (c) 2016-2017 Phil Newton
+' --
+' -- See COPYING for full license information.
+' ------------------------------------------------------------------------------
 
 
 SuperStrict
