@@ -18,6 +18,15 @@ Import brl.reflection
 Import "service.bmx"
 Import "../rules/base_rule.bmx"
 
+' Linting
+Import "../rules/lint/empty_else_rule.bmx"
+
+' Metrics
+Import "../rules/metrics/line_length_rule.bmx"
+Import "../rules/metrics/trailing_whitespace_rule.bmx"
+Import "../rules/metrics/type_function_count_rule.bmx"
+Import "../rules/metrics/type_method_count_rule.bmx"
+
 ' Style
 Import "../rules/style/string_exceptions_rule.bmx"
 Import "../rules/style/type_name_prefix_rule.bmx"
@@ -25,12 +34,6 @@ Import "../rules/style/field_name_prefix_rule.bmx"
 Import "../rules/style/private_field_name_case_rule.bmx"
 Import "../rules/style/type_method_name_case_rule.bmx"
 Import "../rules/style/uppercase_constants_rule.bmx"
-
-' Metrics
-Import "../rules/metrics/line_length_rule.bmx"
-Import "../rules/metrics/trailing_whitespace_rule.bmx"
-Import "../rules/metrics/type_function_count_rule.bmx"
-Import "../rules/metrics/type_method_count_rule.bmx"
 
 
 Type RuleService Extends Service
