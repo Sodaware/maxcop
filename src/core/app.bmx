@@ -98,7 +98,9 @@ Type App
 	
 	''' <summary>Executes the selected build script & target.</summary>
 	Method _execute()
-		
+
+		Local startTime:Int = MilliSecs()
+
 		' Get required services
 		Local reporters:ReporterService            = ReporterService(Self._services.get("ReporterService"))
 		Local rules:RuleService                    = RuleService(Self._services.get("RuleService"))
@@ -158,10 +160,16 @@ Type App
 
 		' Run the whole thing
 		run.execute()
-		
-		'loggers.getLogger().logSuccess("Documentation saved to ~q" + Self._options.output + "~q")
-		
-		' -- All done!
+
+		' Show execution time
+		If Self._options.showExecutionTime Then
+			Local totalTime:Int 	= MilliSecs() - startTime
+			Local timeInSeconds:Int	= Floor(totalTime / 1000)
+			Local remainder:Float	= (totalTime / 1000.0) - timeInSeconds
+			Print "Total time: " + timeInSeconds + "." + (Mid(remainder, 3, 4)) + " seconds"
+		EndIf
+
+		' All done!
 		Self._shutdown()
 				
 	End Method

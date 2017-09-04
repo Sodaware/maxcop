@@ -46,7 +46,12 @@ Type ConsoleOptions Extends CommandLineOptions
 		Description="Supresses output to the console" ..
 		LongName="silent" ..
 		ShortName="s" }
-	
+
+	Field showExecutionTime:Byte = False { ..
+		Description="Displays the total execution time at the end of the scan." ..
+		LongName="show-time" ..
+		ShortName="t" }
+
 	Field showVersionInfo:Byte = False { ..
 		Description="Displays the current version and exits." ..
 		LongName="version" ..
