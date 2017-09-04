@@ -51,8 +51,29 @@ Type BaseRule Abstract
 	Method setEnabled(isEnabled:Byte)
 		Self._isEnabled = isEnabled
 	End Method
+
+
+	' ------------------------------------------------------------
+	' -- Helpers
+	' ------------------------------------------------------------
 	
-	
+	Method getNextNoneEmptyToken:TToken(lexer:TLexer, position:Int)
+		Local nextToken:TToken
+		While position < lexer.NumTokens()
+			nextToken = lexer.GetToken(position)
+			If Self._tokenIsWhitespace(nextToken)
+				position :+ 1
+				Continue
+			EndIf
+			Return nextToken
+		Wend
+	End Method
+
+	Method _tokenIsWhitespace:Byte(token:TToken)
+		If token.kind = TToken.TOK_NEWLINE Then Return True
+	End Method
+
+
 	' ------------------------------------------------------------
 	' -- Checking Stubs
 	' ------------------------------------------------------------
@@ -64,7 +85,7 @@ Type BaseRule Abstract
 	Method checkFile(source:SourceFile)
 		
 	End Method
-	
+
 	
 	' ------------------------------------------------------------
 	' -- Handling Offenses
