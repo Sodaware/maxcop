@@ -13,7 +13,6 @@
 
 SuperStrict
 
-Import brl.map
 Import brl.reflection
 
 Import "service.bmx"
@@ -35,7 +34,7 @@ Import "../rules/metrics/type_method_count_rule.bmx"
 
 
 Type RuleService Extends Service
-	
+
 	Field _availableRules:TList
 	
 	
@@ -52,23 +51,27 @@ Type RuleService Extends Service
 	' -- Standard service methods
 	' ------------------------------------------------------------
 
+	''' <summary>Autoload all rules when the service starts.</summary>
 	Method initialiseService()
-
-		' Load all Rule types
-		Local baseType:TTypeId = TTypeId.ForName("BaseRule")
-
-		For Local ruleType:TTypeId = EachIn baseType.DerivedTypes()
-			Self._availableRules.AddLast(ruleType.NewObject())
-		Next
-
+		Self._loadRulesForType(TTypeId.ForName("BaseRule"))
 	End Method
-	
+
 	Method unloadService()
 		
 	End Method
-	
+
+
+	' ------------------------------------------------------------
+	' -- Internal rule helpers
+	' ------------------------------------------------------------
+
+	''' <summary>
+	''' Loads all rules that extend a particular type. Also checks for rules
+	''' that extend any of the children. Rules can be ignored by including
+	'''  'ignore_type' in their meta-data.
+	''' </summary>
 	Method _loadRulesForType(typeInfo:TTypeId)
-		
+
 		For Local ruleType:TTypeId = EachIn typeInfo.DerivedTypes()
 
 			' If type should be ignored (i.e. has meta "ignore_type") don't add it.
@@ -77,12 +80,13 @@ Type RuleService Extends Service
 			EndIf
 
 			' Add any types that extend this type
-			Self._loadRulesForType(typeInfo)
+			Self._loadRulesForType(ruleType)
+
 		Next
 
 	End Method
-	
-	
+
+
 	' ------------------------------------------------------------
 	' -- Construction & Destruction
 	' ------------------------------------------------------------
