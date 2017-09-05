@@ -32,9 +32,10 @@ Type Metrics_LineLengthRule Extends BaseRule
 		Local lineNumber:Int = 1
 		
 		For Local line:String = EachIn source.getLines()
+			line = line.Replace("~t", "    ")
 			If Self._lineIsTooLong(line) Then
 				Local o:Offense = Offense.Create(source, Self._buildMessageForLine(line))
-				o.setLocation(lineNumber, Self.maxLineLength, line.Length - Self.maxLineLength)
+				o.setLocation(lineNumber, Self.maxLineLength, line.Length - Self.maxLineLength + 1)
 				o.setExcerpt(line)
 				Self.addFileOffense(source, o)
 			End If
