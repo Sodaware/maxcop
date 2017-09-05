@@ -34,6 +34,7 @@ Import "../rules/style/string_exceptions_rule.bmx"
 Import "../rules/style/type_name_prefix_rule.bmx"
 Import "../rules/style/field_name_prefix_rule.bmx"
 Import "../rules/style/private_field_name_case_rule.bmx"
+Import "../rules/style/space_after_comma_rule.bmx"
 Import "../rules/style/type_method_name_case_rule.bmx"
 Import "../rules/style/uppercase_constants_rule.bmx"
 
