@@ -24,6 +24,7 @@ Import "../rules/lint/handle_exceptions_rule.bmx"
 
 ' Metrics
 Import "../rules/metrics/line_length_rule.bmx"
+Import "../rules/metrics/method_length_rule.bmx"
 Import "../rules/metrics/trailing_whitespace_rule.bmx"
 Import "../rules/metrics/type_function_count_rule.bmx"
 Import "../rules/metrics/type_method_count_rule.bmx"
