@@ -62,7 +62,6 @@ Type Metrics_TypeMemberCountRule Extends BaseRule ..
 		If currentMemberCount > Self.maxMemberCount Then
 			Local o:Offense = Offense.Create(source, Self._buildMessageForLine(typeName, currentMemberCount))
 			o.setLocationFromToken(token)
-			o.setExcerpt(source.getLine(token.line - 1))
 			Self.addFileOffense(source, o)
 		End If
 
