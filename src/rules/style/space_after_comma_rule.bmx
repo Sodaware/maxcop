@@ -34,7 +34,7 @@ Type Style_SpaceAfterCommaRule Extends BaseRule
 
 			' Convert tabs to spaces and correct the token's position.
 			Local preComma:String = Left(tokenline, token.column + 1)
-			preComma.Replace("~t", "    ")
+			preComma = preComma.Replace("~t", "    ")
 
 			o.setLocation(token.line - 1, preComma.Length + 2, 1)
 			o.setExcerpt(tokenLine.Replace("~t", "    "))
