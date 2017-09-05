@@ -80,7 +80,7 @@ Type RuleService Extends Service
 		For Local ruleType:TTypeId = EachIn typeInfo.DerivedTypes()
 
 			' If type should be ignored (i.e. has meta "ignore_type") don't add it.
-			If False = ruleType.MetaData().Contains("ignore_type") Then
+			If Not ruleType.MetaData().Contains("ignore_type") Then
 				Self._availableRules.AddLast(ruleType.NewObject())
 			EndIf
 
