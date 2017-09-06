@@ -30,7 +30,7 @@ Type Style_UppercaseConstantsRule Extends BaseRule
 		' If next token is not uppercase
 		If Not(Self._isTokenUppercase(nextToken)) Then
 			Local o:Offense = Offense.Create(source, Self._getMessage(nextToken))
-			o.setLocation(token.line, token.column, 5 + nextToken.ToString().Length)
+			o.setLocation(token.line, token.column + 5, nextToken.ToString().Length)
 			o.setExcerpt( "Const " + nextToken.ToString())
 	
 			
