@@ -13,6 +13,7 @@
 
 SuperStrict
 
+Import sodaware.blitzmax_ascii
 Import "../base_rule.bmx"
 
 ''' <summary>
@@ -29,6 +30,10 @@ Type Metrics_TrailingWhitespaceRule Extends BaseRule
 		Local lineNumber:Int = 1
 		
 		For Local line:String = EachIn source.getLines()
+
+			' Fix Windows line endings on Max/Linux
+			line = self._normalizeLineEndings(line)
+
 			If Self._lineHasTrailingWhitespace(line) Then
 				
 				' Convert tabs to spaces (for formatting reasons)
@@ -38,11 +43,13 @@ Type Metrics_TrailingWhitespaceRule Extends BaseRule
 				Local endPos:Int = Self._findLastNoneWhitespaceCharacter(line)
 
 				Local o:Offense = Offense.Create(source, "Trailing whitespace at end of line")
-				o.setLocation(lineNumber, endPos, line.Length - endPos)
+				o.setLocation(lineNumber, endPos, line.Length - endPos + 1)
 				o.setExcerpt(line)
 				Self.addFileOffense(source, o)
 			End If
+
 			lineNumber:+ 1
+
 		Next
 		
 	End Method
@@ -52,6 +59,14 @@ Type Metrics_TrailingWhitespaceRule Extends BaseRule
 	' -- Internal Helpers
 	' ------------------------------------------------------------
 	
+	Method _normalizeLineEndings:String(line:String)
+		If line.Length = 0 Then Return line
+		If line[line.Length - 1] = ASC_CR Or line[line.Length - 1] = ASC_LF Then
+			line = Left(line, line.Length - 1)
+		End If
+		Return line
+	End Method
+
 	Method _lineHasTrailingWhitespace:Byte(line:String)
 		If line.Trim() = "" Then Return False
 		Return line.EndsWith(" ") Or line.EndsWith("~t")
