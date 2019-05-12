@@ -39,7 +39,7 @@ Rule options can be set in a similar way.
 
 ```ini
 [metrics/line_length]
-max_line_length=120
+max_line_length=80
 ```
 
 
@@ -98,7 +98,7 @@ End Try
 **options**:
   - `max_line_length` : Maximum line length
 
-Checks a line is under a certain number of characters long. Defaults to 80.
+Checks a line is under a certain number of characters long. Defaults to 120.
 
 #### MethodLengthRule
 
