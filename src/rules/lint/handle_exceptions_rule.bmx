@@ -1,5 +1,5 @@
 ' ------------------------------------------------------------------------------
-' -- rules/lint/handle_expressions_rule.bmx
+' -- rules/lint/handle_exceptions_rule.bmx
 ' --
 ' -- Check for empty exception handlers.
 ' --
@@ -14,7 +14,7 @@ SuperStrict
 
 Import "../base_rule.bmx"
 
-Type Lint_HandleExpressionsRule Extends BaseRule
+Type Lint_HandleExceptionsRule Extends BaseRule
 
 	' ------------------------------------------------------------
 	' -- Main Rule Execution
@@ -36,7 +36,7 @@ Type Lint_HandleExpressionsRule Extends BaseRule
 			Local o:Offense = Offense.Create(source, "Avoid `Catch` statements without a body)")
 			o.setLocationFromToken(token)
 			o.setExcerpt(source.getLine(token.line - 1))
-			Self.addFileOffense(source, o)	
+			Self.addFileOffense(source, o)
 		End If
 
 	End Method
