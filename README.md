@@ -1,6 +1,19 @@
 # maxcop
 
+![GPLv3](https://img.shields.io/github/license/sodaware/maxcop.svg)
+![GitHub release](https://img.shields.io/github/release/sodaware/maxcop.svg)
+
+
 A work-in-progress attempt at a BlitzMax source code checker.
+
+
+## Quick Links
+
+Project Homepage:
+: https://www.sodaware.net/dev/tools/maxcop/
+
+Source Code
+: https://github.com/sodaware/maxcop/
 
 
 ## Installation
@@ -10,6 +23,25 @@ A work-in-progress attempt at a BlitzMax source code checker.
 3. Add the directory to your PATH variable
 
 All done! You'll now be able to run `maxcop` from the command line and start scanning.
+
+
+## Building
+
+**maxcop** depends on the following modules:
+
+  - [cower.bmxlexer](https://github.com/nilium/cower.bmxlexer)
+  - sodaware.blitzmax_array
+  - sodaware.blitzmax_ascii
+  - sodaware.console_color
+  - sodaware.console_commandline
+  - sodaware.file_config
+  - sodaware.file_config_iniserializer
+  - sodaware.file_config_sodaserializer
+  - sodaware.file_fnmatch
+  - sodaware.file_util
+
+All sodware modules are available in
+[sodaware.mod](https://www.sodaware.net/sodaware.mod/).
 
 
 ## Basic Usage
