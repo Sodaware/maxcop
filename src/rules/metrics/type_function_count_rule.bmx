@@ -22,7 +22,7 @@ Type Metrics_TypeFunctionCountRule Extends Metrics_TypeMemberCountRule
 
 	' Add a type field so it can be configured via INI
 	Field maxFunctionCount:Int = 15
-	
+
 	Method configure()
 		Self.maxMemberCount = Self.maxFunctionCount
 		Self.memberType     = TToken.TOK_FUNCTION_KW

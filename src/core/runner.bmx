@@ -72,7 +72,7 @@ Type Runner
 
 		Next
 
-		' Finish the scan.		
+		' Finish the scan.
 		Self._reporter.afterScan()
 
 	End Method

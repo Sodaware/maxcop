@@ -26,19 +26,19 @@ Type Metrics_TrailingWhitespaceRule Extends BaseRule
 	' ------------------------------------------------------------
 
 	Method checkFile(source:SourceFile)
-		
+
 		Local lineNumber:Int = 1
-		
+
 		For Local line:String = EachIn source.getLines()
 
 			' Fix Windows line endings on Max/Linux
 			line = self._normalizeLineEndings(line)
 
 			If Self._lineHasTrailingWhitespace(line) Then
-				
+
 				' Convert tabs to spaces (for formatting reasons)
 				line = line.Replace("~t", "    ")
-				
+
 				' Find the last none-whitespace character
 				Local endPos:Int = Self._findLastNoneWhitespaceCharacter(line)
 
@@ -51,14 +51,14 @@ Type Metrics_TrailingWhitespaceRule Extends BaseRule
 			lineNumber:+ 1
 
 		Next
-		
+
 	End Method
-	
-	
+
+
 	' ------------------------------------------------------------
 	' -- Internal Helpers
 	' ------------------------------------------------------------
-	
+
 	Method _normalizeLineEndings:String(line:String)
 		If line.Length = 0 Then Return line
 		If line[line.Length - 1] = ASC_CR Or line[line.Length - 1] = ASC_LF Then
@@ -77,5 +77,5 @@ Type Metrics_TrailingWhitespaceRule Extends BaseRule
 			If Mid(line, pos, 1) <> " " Then Return pos + 1
 		Next
 	End Method
-	
+
 End Type

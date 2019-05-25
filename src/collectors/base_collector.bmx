@@ -17,15 +17,15 @@ Type BaseCollector
 
 	Field _files:TList	= New TList
 	Field _root:String
-	
+
 	Method setFiles(files:TList)
 		Self._files = files
 	End Method
-	
+
 	Method setRoot(path:String)
 		Self._root = path
 	End Method
-	
+
 	Method addPath(path:String)
 		Self._files.addLast(path)
 	End Method

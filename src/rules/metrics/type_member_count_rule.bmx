@@ -37,10 +37,10 @@ Type Metrics_TypeMemberCountRule Extends BaseRule ..
 	' ------------------------------------------------------------
 
 	Method checkToken(token:TToken, lexer:TLexer, position:Int, source:SourceFile)
-		
+
 		' Only for "Type" keywords
 		If token.kind <> TToken.TOK_TYPE_KW Then Return
-		
+
 		' Configure this rule and get the type name.
 		Self.configure()
 		Local typeName:String = lexer.GetToken(position + 1).ToString()

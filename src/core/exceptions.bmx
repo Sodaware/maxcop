@@ -41,7 +41,7 @@ Type ApplicationConfigurationException Extends MaxCopException
 		e.error = message
 		Return e
 	End Function
-	
+
 	Method toString:String()
 		Local message:String = ""
 		If Self._section And Self._key Then
@@ -58,7 +58,7 @@ End Type
 Type CommandLineArgumentsException Extends MaxCopException
 	Field _option:String
 	Field _optionValue:String
-	
+
 	Function Create:CommandLineArgumentsException(message:String, option:String = "", optionValue:String = "")
 		Local e:CommandLineArgumentsException = New CommandLineArgumentsException
 		e._option = option
@@ -66,7 +66,7 @@ Type CommandLineArgumentsException Extends MaxCopException
 		e.error = message
 		Return e
 	End Function
-	
+
 	Method toString:String()
 		Local message:String = "Invalid command line option: "
 		If Self._option And Self._optionValue

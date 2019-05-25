@@ -19,7 +19,7 @@ Type Style_SpaceAfterCommaRule Extends BaseRule
 	' ------------------------------------------------------------
 	' -- Main Rule Execution
 	' ------------------------------------------------------------
-	
+
 	Method checkToken(token:TToken, lexer:TLexer, position:Int, source:SourceFile)
 
 		' Only for commas

@@ -19,7 +19,7 @@ Import brl.reflection
 Import "../services/service.bmx"
 
 Type ServiceManager
-	
+
 	Field _services:TList           = New TList
 	Field _serviceLookup:TMap       = New TMap
 
@@ -74,12 +74,12 @@ Type ServiceManager
 			tService.initialiseService()
 		Next
 	End Method
-	
+
 	Method stopServices()
 		Self._services.Reverse()
 		For Local tService:Service = EachIn Self._services
 			tService.unloadService()
 		Next
 	End Method
-	
+
 End Type

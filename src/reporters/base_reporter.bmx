@@ -28,73 +28,73 @@ Type BaseReporter Abstract
 
 	Field _reportedOffenses:TList
 	Field _fileOffenses:TMap		'< filename => list of offenses
-	
-	
+
+
 	' ----------------------------------------------------------------------
 	' -- Configuration
 	' ----------------------------------------------------------------------
-	
+
 	Method hidesBanner:Byte()
 		Return False
 	End Method
-	
+
 
 	' ----------------------------------------------------------------------
 	' -- Querying
 	' ----------------------------------------------------------------------
-	
+
 	Method fileHasOffenses:Byte(file:String)
 		Return (Self._fileOffenses.ValueForKey(file) <> Null)
 	End Method
-	
-	
+
+
 	' ----------------------------------------------------------------------
 	' -- Hooks
 	' ----------------------------------------------------------------------
 
 	Method beforeScan(files:TList)
-		
+
 	End Method
-	
+
 	Method afterScan()
-		
+
 	End Method
-	
+
 	Method beforeFileScan(file:String)
-		
+
 	End Method
-	
+
 	Method afterFileScan(file:String)
-		
+
 	End Method
-	
-	
+
+
 	' ----------------------------------------------------------------------
 	' -- Tracking Offenses
 	' ----------------------------------------------------------------------
-	
+
 	''' <summary>
 	''' Add an offense to a source file. Call this when an offense has been
 	''' found and needs to be tracked.
 	''' </summary>
 	Method addFileOffense(source:SourceFile, o:Offense)
-		
+
 		' Add the offense
 		Self._reportedOffenses.AddLast(o)
-		
+
 		' Add to list of file offenses
 		Local fileErrors:TList = TList(Self._fileOffenses.ValueForKey(source.path))
 		If fileErrors = Null Then
 			fileErrors = New TList
 			Self._fileOffenses.Insert(source.path, fileErrors)
 		End If
-		
+
 		fileErrors.AddLast(o)
-		
+
 	End Method
-	
+
 	Method reportOffense(source:SourceFile, line:Int, column:Int, message:String = "", severity:Int = 0, excerpt:String = "")
-		
+
 		Local o:Offense = New Offense
 		o._source = source
 		o._line = line
@@ -102,19 +102,19 @@ Type BaseReporter Abstract
 		o._severity = severity
 		o._column = column
 		o._excerpt = excerpt
-		
+
 		Self.addFileOffense(source, o)
-		
+
 	End Method
-	
-	
+
+
 	' ----------------------------------------------------------------------
 	' -- Construction
 	' ----------------------------------------------------------------------
-	
+
 	Method New()
 		Self._reportedOffenses = New TList
 		Self._fileOffenses     = New TMap
 	End Method
-	
+
 End Type
