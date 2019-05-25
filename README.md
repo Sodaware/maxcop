@@ -6,11 +6,13 @@
 
 A work-in-progress attempt at a BlitzMax source code checker.
 
+![maxcop in action](https://www.sodaware.net/assets/images/projects/maxcop/maxcop-screenshot.png)
+
 
 ## Quick Links
 
 Project Homepage:
-: https://www.sodaware.net/dev/tools/maxcop/
+: https://www.sodaware.net/maxcop/
 
 Source Code
 : https://github.com/sodaware/maxcop/
@@ -18,11 +20,13 @@ Source Code
 
 ## Installation
 
-1. Download a binary release from the maxcop page.
+1. Download a binary release from the maxcop homepage.
 2. Extract the archive somewhere
-3. Add the directory to your PATH variable
+3. Add the directory to your `PATH` variable *or* copy the binary file to a
+   directory in your `PATH` (e.g. `/usr/local/bin/` on a GNU/Linux system).
 
-All done! You'll now be able to run `maxcop` from the command line and start scanning.
+All done! You'll now be able to run `maxcop` from the command line and start
+scanning.
 
 
 ## Building
@@ -264,3 +268,23 @@ Const Something_Here:String = "a"
 ' Good
 Const SOMETHING_HERE:String = "a"
 ```
+
+
+## Optional configuration
+
+To enable scanning of modules, **maxcop** needs to configured with the correct
+module paths.
+
+Create a file called "maxcop.ini" in the same directory as maxcop. An example
+would look something like this (replacing the full paths with ones for your
+system):
+
+```ini
+[mod_path]
+win32 = c:\full\path\to\blitzmax\mods\
+linux = /full/path/to/blitzmax/mods/
+macos = /full/path/to/blitzmax/mods/
+```
+
+This step is only required if you wish to scan modules by name (e.g. `maxcop
+brl.basic`) instead of with an absolute path.
