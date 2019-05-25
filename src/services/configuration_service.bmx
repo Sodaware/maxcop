@@ -42,6 +42,8 @@ Type ConfigurationService Extends Service
 
 	''' <summary>Get a value from the application configuration.</summary>
 	Method get:String(sectionName:String, keyName:String)
+		If Self._config = Null Then Return ""
+
 		Return Self._config.getKey(sectionName, keyName)
 	End Method
 
@@ -56,7 +58,6 @@ Type ConfigurationService Extends Service
 	' ------------------------------------------------------------
 
 	Method initialiseService()
-		Self._config = New Config
 		Self.loadConfiguration()
 	End Method
 
@@ -94,8 +95,10 @@ Type ConfigurationService Extends Service
 	Method loadConfigurationFile(fileName:String)
 		Select ExtractExt(fileName.ToLower())
 			Case "soda"
+				Self._config = New Config
 				SodaConfigSerializer.Load(Self._config, fileName)
 			Case "ini"
+				Self._config = New Config
 				IniConfigSerializer.Load(Self._config, fileName)
 		End Select
 	End Method
@@ -105,14 +108,18 @@ Type ConfigurationService Extends Service
 	' -- Validating the configuration
 	' ------------------------------------------------------------
 
+	Method hasConfiguration:Byte()
+		Return Self._config <> Null
+	End Method
+
 	Method validateConfiguration()
 
-		' Check a module path is set
+		' Check a module path is set.
 		If Self._config.getSectionKeys("mod_path") = Null Or Self._config.getSectionKeys("mod_path").Count() = 0 Then
 			Throw ApplicationConfigurationException.Create("Configuration is missing `mod_path` configuration section")
 		End If
 
-		' Check module paths
+		' Check module paths.
 		If FILETYPE_DIR <> FileType(Self.get("mod_path", Self.getPlatform())) Then
 			Throw ApplicationConfigurationException.Create( ..
 				"Invalid module path ~q" + Self.get("mod_path", Self.getPlatform()) + "~q", ..
