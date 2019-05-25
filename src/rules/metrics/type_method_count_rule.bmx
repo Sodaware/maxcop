@@ -22,7 +22,7 @@ Type Metrics_TypeMethodsCountRule Extends Metrics_TypeMemberCountRule
 
 	' Add a type field so it can be configured via INI
 	Field maxMethodCount:Int = 15
-	
+
 	Method configure()
 		Self.maxMemberCount = Self.maxMethodCount
 		Self.memberType     = TToken.TOK_METHOD_KW

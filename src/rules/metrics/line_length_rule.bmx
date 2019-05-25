@@ -15,22 +15,22 @@ SuperStrict
 Import "../base_rule.bmx"
 
 Type Metrics_LineLengthRule Extends BaseRule
-	
+
 	' ------------------------------------------------------------
 	' -- Configuration
 	' ------------------------------------------------------------
-	
+
 	Field maxLineLength:Int = 120
-	
-	
+
+
 	' ------------------------------------------------------------
 	' -- Main Rule Execution
 	' ------------------------------------------------------------
-	
+
 	Method checkFile(source:SourceFile)
-		
+
 		Local lineNumber:Int = 1
-		
+
 		For Local line:String = EachIn source.getLines()
 			line = line.Replace("~t", "    ")
 			If Self._lineIsTooLong(line) Then
@@ -41,20 +41,20 @@ Type Metrics_LineLengthRule Extends BaseRule
 			End If
 			lineNumber:+ 1
 		Next
-		
+
 	End Method
-	
-	
+
+
 	' ------------------------------------------------------------
 	' -- Internal Helpers
 	' ------------------------------------------------------------
-	
+
 	Method _lineIsTooLong:Byte(line:String)
 		Return line.Length > Self.maxLineLength
 	End Method
-	
+
 	Method _buildMessageForLine:String(line:String)
 		Return "Line is too long. [" + line.Length + "/" + Self.maxLineLength + "]"
 	End Method
-	
+
 End Type
