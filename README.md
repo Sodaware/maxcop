@@ -1,7 +1,7 @@
 # maxcop
 
-![GPLv3](https://img.shields.io/github/license/sodaware/maxcop.svg)
-![GitHub release](https://img.shields.io/github/release/sodaware/maxcop.svg)
+![GPLv3](https://img.shields.io/github/license/Sodaware/maxcop.svg)
+![GitHub release](https://img.shields.io/github/release/Sodaware/maxcop.svg)
 
 
 A work-in-progress attempt at a BlitzMax source code checker.
