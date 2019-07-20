@@ -29,10 +29,9 @@ Type Style_TypeNamePrefixRule Extends BaseRule
 
 		' If next token does not start with T, complain
 		If False = nextToken.ToString().StartsWith("T") Then
-			Local o:Offense = Offense.Create(source, "Type name `" + token.ToString() + "` should start with T")
+			Local o:Offense = Offense.Create(source, "Type name `" + nextToken.ToString() + "` should start with T")
 			o.setLocation(token.line, token.column + 5, nextToken.ToString().Length)
 			o.setExcerpt( "Type " + nextToken.ToString())
-
 
 			Self.addFileOffense(source, o)
 		End If
