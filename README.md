@@ -44,7 +44,7 @@ scanning.
   - sodaware.file_fnmatch
   - sodaware.file_util
 
-All sodware modules are available in
+All sodaware modules are available in
 [sodaware.mod](https://www.sodaware.net/sodaware.mod/).
 
 
