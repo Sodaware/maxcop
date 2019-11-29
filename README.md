@@ -33,7 +33,7 @@ scanning.
 
 **maxcop** depends on the following modules:
 
-  - [cower.bmxlexer](https://github.com/nilium/cower.bmxlexer)
+  - [cower.bmxlexer](https://github.com/sodaware/cower.bmxlexer)
   - sodaware.blitzmax_array
   - sodaware.blitzmax_ascii
   - sodaware.console_color
@@ -46,6 +46,12 @@ scanning.
 
 All sodaware modules are available in
 [sodaware.mod](https://www.sodaware.net/sodaware.mod/).
+
+**note** - the official version of
+[cower.bmxlexer](https://github.com/nilium/cower.bmxlexer) is missing some
+keywords used by maxcop and won't compile correctly. The linked fork
+([sodaware/cower.bmxlexer](https://github.com/sodaware/cower.bmxlexer)) contains
+the correct keyword list.
 
 
 ## Basic Usage
