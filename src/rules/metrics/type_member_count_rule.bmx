@@ -5,7 +5,7 @@
 ' -- (e.g. too many functions, methods etc).
 ' --
 ' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
-' -- Copyright (c) 2016-2017 Phil Newton
+' -- Copyright (c) 2016-2020 Phil Newton
 ' --
 ' -- See COPYING for full license information.
 ' ------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ Type Metrics_TypeMemberCountRule Extends BaseRule ..
 			If currentToken.kind = TToken.TOK_ENDTYPE_KW Then Exit
 
 			' Count members
-			If currentToken.kind = Self.memberType Then
+			If Self._isTokenType(currentToken) Then
 				currentMemberCount :+ 1
 			End If
 		Next
@@ -71,6 +71,13 @@ Type Metrics_TypeMemberCountRule Extends BaseRule ..
 	' ------------------------------------------------------------
 	' -- Internal Helpers
 	' ------------------------------------------------------------
+
+	''' <summary>
+	''' Check if a token is one this function is interested in.
+	''' </summary>
+	Method _isTokenType:Byte(token:TToken)
+		Return token.kind = Self.memberType
+	End Method
 
 	Method _buildMessageForLine:String(typeName:String, memberCount:Int)
 		Local message:String = "Type " + typeName + " has too many " + Self.memberTypeName + "s."
