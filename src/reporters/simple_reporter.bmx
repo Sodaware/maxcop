@@ -77,7 +77,7 @@ Type SimpleReporter Extends BaseReporter ..
 				WriteC(o._line + ":" + o._column + ": ")
 
 				' Write the error level
-				WriteC("%yC%n: " + o._message)
+				WriteC("%yC%n: " + Self.escape(o._message))
 
 				' Write the line
 				If o._excerpt Then
@@ -120,10 +120,17 @@ Type SimpleReporter Extends BaseReporter ..
 		Print RSet(highlight, start + length - 1)
 	End Method
 
+	Method escape:String(message:String)
+		message = message.Replace("%", "%%")
+
+		Return message
+	End Method
+
 	''' <summary>Ultra-simple pluralization support. Not for heavy-duty use.</summary>
 	Method _pluralize:String(message:String, value:Int)
 		message = message.Replace("%d", value)
 		If value <> 1 Then message :+ "s"
+
 		Return message
 	End Method
 
