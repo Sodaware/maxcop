@@ -20,6 +20,7 @@ Import "../rules/base_rule.bmx"
 
 ' Linting
 Import "../rules/lint/empty_else_rule.bmx"
+Import "../rules/lint/empty_select_rule.bmx"
 Import "../rules/lint/handle_exceptions_rule.bmx"
 
 ' Metrics
