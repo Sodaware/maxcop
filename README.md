@@ -170,6 +170,15 @@ End Try
 
 ### Metrics
 
+#### FunctionParameterCountRule
+
+**name**: metrics/function\_parameter\_count
+
+**options**:
+  - `max_parameter_count` : Maximum number of parameters allowed.
+
+Check that a function has under a certain number of parameters. Defaults to 5.
+
 #### LineLengthRule
 
 **name**: metrics/line_length
@@ -187,6 +196,15 @@ Checks a line is under a certain number of characters long. Defaults to 120.
   - `max_line_count` : Maximum number of lines allowed.
 
 Checks a method has under a certain number of code lines inside. Defaults to 35.
+
+#### MethodParameterCountRule
+
+**name**: metrics/method\_parameter\_count
+
+**options**:
+  - `max_parameter_count` : Maximum number of parameters allowed.
+
+Check that a method has under a certain number of parameters. Defaults to 5.
 
 #### TrailingWhitespaceRule
 

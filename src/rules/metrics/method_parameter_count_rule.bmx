@@ -1,7 +1,7 @@
 ' ------------------------------------------------------------------------------
-' -- rules/metrics/function_parameter_count_rule.bmx
+' -- rules/metrics/method_parameter_count_rule.bmx
 ' --
-' -- Check a function does not have too many parameters.
+' -- Check a method does not have too many parameters.
 ' --
 ' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
 ' -- Copyright (c) 2016-2020 Phil Newton
@@ -14,7 +14,7 @@ SuperStrict
 
 Import "parameter_count_rule.bmx"
 
-Type Metrics_FunctionParameterCountRule Extends Metrics_ParameterCountRule
+Type Metrics_MethodParameterCountRule Extends Metrics_ParameterCountRule
 
 	' ------------------------------------------------------------
 	' -- Configuration
@@ -24,8 +24,8 @@ Type Metrics_FunctionParameterCountRule Extends Metrics_ParameterCountRule
 
 	Method configure()
 		Self.maxItemCount   = Self.maxParameterCount
-		Self.memberType     = TToken.TOK_FUNCTION_KW
-		Self.memberTypeName = "Function"
+		Self.memberType     = TToken.TOK_METHOD_KW
+		Self.memberTypeName = "Method"
 	End Method
 
 End Type
