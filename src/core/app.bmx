@@ -12,7 +12,7 @@
 
 SuperStrict
 
-Import sodaware.Console_Color
+Import sodaware.console_color
 Import brl.reflection
 Import brl.retro
 
@@ -40,8 +40,8 @@ Import "../reporters/simple_reporter.bmx"
 ''' <summary>Main maxcop application.</summary>
 Type App
 
-	Field _options:ConsoleOptions			'''< Command line options
-	Field _services:ServiceManager			'''< Application services
+	Field _options:ConsoleOptions           '''< Command line options
+	Field _services:ServiceManager          '''< Application services
 
 
 	' ------------------------------------------------------------
@@ -126,7 +126,9 @@ Type App
 		' Create a new runner
 		Local run:Runner = New Runner
 
-		' Set required options
+		' Set the services.
+		run.setRuleService(rules)
+		run.setRuleConfigurationService(rulesConfig)
 
 		' Add parsers and formatters
 		run.setReporter(reporters.getReporter(Self._options.Format))
@@ -155,17 +157,15 @@ Type App
 
 		' TODO: Throw an error if no source files
 
-		' Load the local rules configuration.
-		rulesConfig.findAndLoadConfiguration(collector.getRootPath())
+		' Load the default rules file for this project.
+		rulesConfig.setProjectRoot(collector.getRootPath())
 
-		' Get and configure rules
-		Local availableRules:TList = rules.getAllRules()
-		rulesConfig.configureRules(availableRules)
+		' TODO: Do we need this?
+		rulesConfig.setRules(rules.getAllRules())
 
-		' Add all rules
-		run.setEnabledRules(availableRules)
+		rulesConfig.loadDefaultConfiguration()
 
-		' Run the whole thing
+		' Run the whole thing.
 		run.execute()
 
 		' Show execution time

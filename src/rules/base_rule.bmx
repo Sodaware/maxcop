@@ -12,6 +12,7 @@
 
 SuperStrict
 
+Import brl.reflection
 Import brl.retro
 Import cower.bmxlexer
 
@@ -93,6 +94,29 @@ Type BaseRule Abstract
 
 	Method addFileOffense(source:SourceFile, o:Offense)
 		Self._reporter.addFileOffense(source, o)
+	End Method
+
+
+	' ------------------------------------------------------------
+	' -- BlitzMax methods
+	' ------------------------------------------------------------
+
+	Method clone:BaseRule()
+		Local r:BaseRule = BaseRule(TTypeId.forObject(self).NewObject())
+
+		r._name      = Self._name
+		r._category  = Self._category
+		r._isEnabled = Self._isEnabled
+
+		Return r
+	End Method
+
+	Method toString:String()
+		Local out:String = "#<BaseRule:" + TTypeId.forobject(Self).Name() + ", "
+		If Self._isEnabled Then out :+ "on" Else out :+ "off"
+		out :+ ">"
+
+		Return out
 	End Method
 
 End Type

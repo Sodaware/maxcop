@@ -16,6 +16,7 @@ Import brl.linkedlist
 Import cower.bmxlexer
 Import sodaware.blitzmax_array
 Import sodaware.file_fnmatch
+Import sodaware.file_util
 
 Import "../core/exceptions.bmx"
 Import "base_collector.bmx"
@@ -63,7 +64,31 @@ Type BmxCollector Extends BaseCollector
 	Method getRootPath:String()
 		If Self._root Then Return Self._root
 
+		' List of files that signify root directory.
+		Local rootFiles:String[] = [".git", ".svn", "build.xml", "blam.xml"]
+		Local root:String        = ""
 
+		' Search each path in the "files" list.
+		Local path:String = String(Self._files.First())
+
+		' TODO: Check this on Windows.
+		While path <> "/"
+			If Self._rootIn(path, rootFiles) Then
+				Self._root = path
+
+				Return Self._root
+			EndIf
+			
+			path = ExtractDir(path)
+		Wend
+	End Method
+
+	Method _rootIn:Byte(path:String, rootFiles:String[])
+		For Local f:String = EachIn rootFiles
+			If FileType(File_Util.PathCombine(path, f)) > 0 Then Return True
+		Next
+
+		Return False
 	End Method
 
 

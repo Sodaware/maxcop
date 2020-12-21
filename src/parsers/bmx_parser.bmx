@@ -32,6 +32,9 @@ Type BmxParser
 	Field _reporter:BaseReporter
 	Field _inputs:TList       = New TList
 	Field _parsedFiles:TList  = New TList
+
+	Field _defaultRules:TList = New TList
+	Field _localRules:TList   = New TList
 	Field _enabledRules:TList = New TList
 
 
@@ -42,12 +45,29 @@ Type BmxParser
 	''' <summary>Set the reporter to use with this parser.</summary>
 	Method setReporter:BmxParser(reporter:BaseReporter)
 		Self._reporter = reporter
+
 		Return Self
 	End Method
 
+	Method setDefaultRules:BmxParser(rules:TList)
+		Self._defaultRules = rules
+
+		Return Self
+	End Method
+
+	Method setRules(rules:Tlist)
+		Self._enabledRules = rules
+	End Method
+
+	Method reset()
+		Self._enabledRules.clear()
+	End Method
+
+	' TODO: Remove these?
 	''' <summary>Add a rule this parser must use.</summary>
 	Method addRule:BmxParser(rule:BaseRule)
 		Self._enabledRules.addLast(rule)
+
 		Return Self
 	End Method
 
@@ -56,6 +76,7 @@ Type BmxParser
 		For Local rule:BaseRule = EachIn rules
 			Self.addRule(rule)
 		Next
+
 		Return Self
 	End Method
 
@@ -90,7 +111,7 @@ Type BmxParser
 		Local currentToken:TToken
 
 		' Do an initial pass of all file-level rules
-		For Local rule:BaseRule = EachIn Self._enabledRules
+		For Local rule:BaseRule = EachIn Self.getRulesToCheck()
 			If rule.isDisabled() Then Continue
 
 			' TODO: this elsewhere
@@ -102,7 +123,7 @@ Type BmxParser
 		While pos < lexer.NumTokens()
 			currentToken = lexer.GetToken(pos)
 
-			For Local rule:BaseRule = EachIn Self._enabledRules
+			For Local rule:BaseRule = EachIn Self.getRulesToCheck()
 				if rule.isDisabled() Then Continue
 				rule._reporter = Self._reporter
 				rule.checkToken(currentToken, lexer, pos, file)
@@ -115,6 +136,7 @@ Type BmxParser
 
 	End Method
 
+	' TODO: Replace this with faster version.
 	Method loadFile:String(fileName:String)
 
 		Local fileIn:TStream = ReadFile(fileName)
@@ -127,6 +149,11 @@ Type BmxParser
 
 		Return source
 
+	End Method
+
+	' Build an array of rules to check, based on the default rules.
+	Method getRulesToCheck:TList()
+		Return Self._enabledRules
 	End Method
 
 End Type
