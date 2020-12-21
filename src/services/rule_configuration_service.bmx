@@ -130,6 +130,7 @@ Type RuleConfigurationService Extends Service
 	' ------------------------------------------------------------
 
 	Method initialiseService()
+		Self._config = New Config
 	End Method
 
 	Method unloadService()
