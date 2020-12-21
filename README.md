@@ -261,6 +261,27 @@ Type MyType
 Type TMyType
 ```
 
+#### TypeNameSuffixRule
+
+**name**: style/type_name_suffix
+
+**options**:
+  - `suffix` : The suffix to check for.
+
+
+Check type names end with the configured suffix. This rule is disabled by
+default and requires a `suffix` value to be set.
+
+```blitzmax
+' With `suffix` set to "Object"
+
+' Bad
+Type Something
+
+' Good
+Type SomethingObject
+```
+
 #### UppercaseConstantsRule
 
 **name**: style/uppercase_constants
