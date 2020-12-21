@@ -67,7 +67,11 @@ maxcop src my_file.bmx
 
 ## Configuring Rules
 
-MaxCop searches the current directory for a `maxcop_rules.ini` file.
+`maxcop` searches the directory of the current file for a `maxcop_rules.ini` or
+`.maxcop.ini` file. If one is not found, `maxcop` will search upwards until it
+finds a rules files, or until the root directory is reached.
+
+Local rules file override any other rules in the project.
 
 Rules can be disabled by including their full name and setting `enabled` to
 `false`:
