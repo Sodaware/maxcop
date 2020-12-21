@@ -9,7 +9,7 @@
 ' -- the RuleConfigurationService.
 ' --
 ' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
-' -- Copyright (c) 2016-2017 Phil Newton
+' -- Copyright (c) 2016-2020 Phil Newton
 ' --
 ' -- See COPYING for full license information.
 ' ------------------------------------------------------------------------------
@@ -76,7 +76,7 @@ Type ConfigurationService Extends Service
 		' If configuration file was set manually, load it and ignore local config
 		If Self._configurationFile Then
 			If FILETYPE_FILE = FileType(Self._configurationFile) Then
-				Self.loadConfigurationFile(Self._configurationFile)
+				Self._config = Self.loadConfigurationFile(Self._configurationFile)
 				Return
 			Else
 				Throw CommandLineArgumentsException.Create("Configuration file ~q" + Self._configurationFile + "~q not found")
@@ -84,23 +84,24 @@ Type ConfigurationService Extends Service
 		End If
 
 		' Check for various configuration files and attempt to load them.
-		If Self.configurationFileExists("maxcop.soda") Then
-			Self.loadConfigurationFile(Self.configurationFilePath("maxcop.soda"))
-		ElseIf Self.configurationFileExists("maxcop.ini") Then
-			Self.loadConfigurationFile(Self.configurationFilePath("maxcop.ini"))
-		EndIf
+		Local path:String = Self._getDefaultConfigPath()
+		If RealPath(path) <> path Then path = Self._normalizePath(path)
 
+		' Load configuration file.
+		Self._config = Self.loadConfigurationFile(path)
 	End Method
 
-	Method loadConfigurationFile(fileName:String)
+	Method loadConfigurationFile:Config(fileName:String)
+		Local config:Config = New Config
+
 		Select ExtractExt(fileName.ToLower())
 			Case "soda"
-				Self._config = New Config
-				SodaConfigSerializer.Load(Self._config, fileName)
+				SodaConfigSerializer.Load(config, fileName)
 			Case "ini"
-				Self._config = New Config
-				IniConfigSerializer.Load(Self._config, fileName)
+				IniConfigSerializer.Load(config, fileName)
 		End Select
+
+		Return config
 	End Method
 
 
@@ -140,6 +141,36 @@ Type ConfigurationService Extends Service
 
 	Method configurationFilePath:String(name:String)
 		Return File_Util.PathCombine(AppDir, name)
+	End Method
+
+	''' <summary>
+	''' Get the full path to the default configuration file.
+	'''
+	''' Tests for the following file names:
+	'''   * `~/.maxcoprc`
+	'''   * `~/.config/maxcop.ini`
+	'''   * `~/.config/maxcop/config.ini`
+	'''   * `maxcop.ini` in the execution directory.
+	''' </summary>
+	Method _getDefaultConfigPath:String()
+		' List of allowed paths, highest-priority first.
+		Local allowedPaths:String[] = [ ..
+			File_Util.PathCombine(File_Util.GetHomeDir(), ".maxcoprc"), ..
+			File_Util.PathCombine(File_Util.GetHomeDir(), ".config/maxcop.ini"), ..
+			File_Util.PathCombine(File_Util.GetHomeDir(), ".config/maxcop/config.ini"), ..
+			File_Util.PathCombine(AppDir, "maxcop.ini") ..
+		]
+
+		' Test each path and return the first one that exists.
+		For Local path:String = EachIn allowedPaths
+			If FILETYPE_FILE = FileType(path) Then Return path
+		Next
+
+		Return ""
+	End Method
+
+	Method _normalizePath:String(path:String)
+		Return File_Util.PathCombine(LaunchDir, path)
 	End Method
 
 

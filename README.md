@@ -279,11 +279,16 @@ Const SOMETHING_HERE:String = "a"
 ## Optional configuration
 
 To enable scanning of modules, **maxcop** needs to configured with the correct
-module paths.
+module paths. **maxcop** will look for an ini file in the following places:
 
-Create a file called "maxcop.ini" in the same directory as maxcop. An example
-would look something like this (replacing the full paths with ones for your
-system):
+- `~/.maxcoprc`
+- `~/.config/maxcop.ini`
+- `~/.config/maxcop/config.ini`
+- `maxcop.ini` in the maxcop executable directory
+
+
+An example configuration file looks something like this (replacing the full
+paths with ones for your system):
 
 ```ini
 [mod_path]
