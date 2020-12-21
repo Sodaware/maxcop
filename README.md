@@ -212,9 +212,18 @@ Check that a method has under a certain number of parameters. Defaults to 5.
 
 Checks there is no empty whitespace at the end of lines.
 
+#### TypeFieldCountRule
+
+**name**: metrics/type\_field\_count
+
+**options**:
+  - `max_field_count` : Maximum number of fields allowed in a type.
+
+Checks a type has under a certain number of fields. Defaults to 15.
+
 #### TypeFunctionCountRule
 
-**name**: metrics/type_function_count
+**name**: metrics/type\_function\_count
 
 **options**:
   - `max_function_count` : Maximum number of functions allowed in a type.
@@ -223,7 +232,7 @@ Checks a type has under a certain number of functions. Defaults to 15.
 
 #### TypeMethodCountRule
 
-**name**: metrics/type_function_count
+**name**: metrics/type\_method\_count
 
 **options**:
   - `max_method_count` : Maximum number of methods allowed in a type.
@@ -234,7 +243,7 @@ Checks a type has under a certain number of methods. Defaults to 15.
 
 #### FieldNamePrefixRule
 
-**name**: style/field_name_prefix
+**name**: style/field\_name\_prefix
 
 Checks that pseudo-private field names do not start with `m_`. Should use `_`
 prefix instead.
