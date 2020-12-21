@@ -28,6 +28,7 @@ Type Lint_EmptySelectRule Extends BaseRule
 		' If no "Case" or "Default" tokens before end, throw an error.
 		Local tokenPos:Int  = position
 		Local finished:Byte = False
+
 		Repeat
 			Local nextToken:TToken = Self.getNextNoneEmptyToken(lexer, tokenPos)
 

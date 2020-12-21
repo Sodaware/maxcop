@@ -66,6 +66,7 @@ Type BaseRule Abstract
 				position :+ 1
 				Continue
 			EndIf
+
 			Return nextToken
 		Wend
 	End Method

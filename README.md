@@ -91,6 +91,25 @@ All rules are enabled by default.
 
 ### Lint
 
+#### EmptyCaseRule
+
+**name**: lint/empty_case
+
+Raised if there is an empty `Case` statement in code.
+
+```blitzmax
+' Bad
+Select value
+    Case True
+End Select
+
+' Good
+Select value
+    Case True
+        doThis()
+End Select
+```
+
 #### EmptyElseRule
 
 **name**: lint/empty_else
@@ -108,6 +127,24 @@ EndIf
 If true Then
     doThis()
 EndIf
+```
+
+#### EmptySelectRule
+
+**name**: lint/empty_select
+
+Raised if there is an empty `Select` statement in code.
+
+```blitzmax
+' Bad
+Select something
+End Select
+
+' Good
+Select something
+    Default
+        doThis()
+End Select
 ```
 
 #### HandleExceptionsRule
