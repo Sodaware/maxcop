@@ -71,8 +71,7 @@ Type BmxCollector Extends BaseCollector
 		' Search each path in the "files" list.
 		Local path:String = String(Self._files.First())
 
-		' TODO: Check this on Windows.
-		While path <> "/"
+		While path <> "/" And ExtractDir(path) <> path
 			If Self._rootIn(path, rootFiles) Then
 				Self._root = path
 
@@ -211,7 +210,7 @@ Type BmxCollector Extends BaseCollector
 
 					End If
 
-				' Any of the followign tokens are allowed before an `import` and `include` statement
+				' Any of the following tokens are allowed before an `import` and `include` statement
 				Case TToken.TOK_STRICT_KW
 				Case TToken.TOK_SUPERSTRICT_KW
 				Case TToken.TOK_LINE_COMMENT

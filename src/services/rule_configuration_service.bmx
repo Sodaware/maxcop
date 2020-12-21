@@ -92,8 +92,7 @@ Type RuleConfigurationService Extends Service
 		' Strip file name.
 		path = ExtractDir(path)
 
-		' TODO: Check this on Windows.
-		While path <> "/"
+		While path <> "/" And ExtractDir(path) <> path
 			Local configPath:String = Self.findConfigForDirectory(path)
 			If configPath <> "" Then Return configPath
 
