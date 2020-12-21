@@ -5,7 +5,7 @@
 ' -- type and runs it. See core/app.bmx for the actual app.
 ' --
 ' -- This file is part of "maxcop" (https://www.sodaware.net/maxcop/)
-' -- Copyright (c) 2007-2017 Phil Newton
+' -- Copyright (c) 2007-2020 Phil Newton
 ' --
 ' -- MAXCOP is free software; you can redistribute it and/or modify
 ' -- it under the terms of the GNU General Public License as published by
