@@ -121,9 +121,6 @@ Type RuleConfigurationService Extends Service
 		Return c
 	End Method
 
-	Method isRuleBlock:Byte(blockName:String)
-		Return blockName.toLower() <> "ignored_files"
-	End Method
 
 	' ------------------------------------------------------------
 	' -- Standard service methods
@@ -178,19 +175,12 @@ Type RuleConfigurationService Extends Service
 
 	End Method
 
-	Method isRuleEnabled:Byte(rule:BaseRule, disabledRules:TList)
-		Return Not(disabledRules.Contains(TTypeId.ForObject(rule)))
+	Method isRuleBlock:Byte(blockName:String)
+		Return blockName.toLower() <> "ignored_files"
 	End Method
 
-	Method configureRulesForFile(path:String)
-
-'		Local allRules:TList = Self._rules.getAllRules()
-
-'		Self._rulesConfig.configureRules(allRules)
-
-		' Add all rules.
-'		self.setEnabledRules(allRules)
-
+	Method isRuleEnabled:Byte(rule:BaseRule, disabledRules:TList)
+		Return Not(disabledRules.Contains(TTypeId.ForObject(rule)))
 	End Method
 
 	Method getDisabledRules:TList(c:Config)
