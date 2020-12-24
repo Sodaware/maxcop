@@ -32,7 +32,6 @@ Type RuleConfigurationService Extends Service
 	Field _rootPath:String              '< Project root path.
 	Field _config:Config                '< Holds the base configuration that all others will extend (for now).
 	Field _rules:TList                  '< Holds all rules.
-	Field _configuredRules:TList        '< List of DEFAULT configured rules.
 
 
 	' ------------------------------------------------------------
